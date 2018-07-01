@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
+import { loadData } from '../../redux/user.redux';
+import { connect } from 'react-redux';
 @withRouter
+@connect(
+    null,
+    { loadData }
+)
 export default class AuthRoute extends Component {
     componentDidMount () {
         const publicList = ['/login', '/register'];
@@ -15,11 +21,10 @@ export default class AuthRoute extends Component {
             if (res.status === 200) {
                 if (res.data.code === 0) {
                     // 有登录信息的
+                    this.props.loadData(res.data.data);
                 } else {
-                    console.log(this.props.history);
                     this.props.history.push('/login');
                 }
-                console.log(res.data);
             }
         });
         // 是否登陆
