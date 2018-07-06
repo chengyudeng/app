@@ -63,7 +63,6 @@ export default class Register extends Component {
                     <WhiteSpace />
                     <Button type='primary' onClick={ this.handleRegister }>注册</Button>
                 </List>
-                <h2>注册页</h2>
             </div>
         );
     }

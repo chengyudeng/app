@@ -10,6 +10,7 @@ import Register from './container/register/register';
 import AuthRoute from './component/authRoute/authRoute';
 import BossInfo from './container/bossinfo/bossinfo';
 import GeniusInfo from './container/geniusinfo/geniusinfo';
+import Dashboard from './component/dashboard/dashboard';
 import reducers from './reducers';
 import './config';
 import './index.css';
@@ -23,7 +24,7 @@ function Boss () {
     return <h2>boss</h2>;
 }
 
-
+// boss genius me msg 4个页面
 ReactDOM.render(
     (<Provider store={ store }>
         <BrowserRouter>
@@ -34,6 +35,7 @@ ReactDOM.render(
                     <Route path='/geniusinfo' component={ GeniusInfo }></Route>
                     <Route path='/login' component={ Login }></Route>
                     <Route path='/register' component={ Register }></Route>
+                    <Route component={ Dashboard }></Route>
                 </Switch>
             </div>
         </BrowserRouter>
