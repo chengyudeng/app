@@ -1,11 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Result, List, WhiteSpace } from 'antd-mobile';
+// import browserCookie from 'browser-cookies';
 
 @connect(
     state => state.user
 )
 export default class User extends Component {
+    constructor (props) {
+        super(props);
+        this.logout = this.logout.bind(this);
+    }
+    logout () {
+        alert(1);
+    }
     render () {
         const props = this.props;
         const Item = List.Item;
@@ -26,8 +34,8 @@ export default class User extends Component {
                         { props.money ? <Brief>薪资: { props.money }</Brief> : null }
                     </Item>
                 </List>
-                <WhiteSpace />
-                <List>
+                <WhiteSpace></WhiteSpace>
+                <List onClick={ () => alert(1) }>
                     <Item>退出登录</Item>
                 </List>
             </div>
