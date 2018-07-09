@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Result, List, WhiteSpace } from 'antd-mobile';
+import { Result, List, WhiteSpace, Modal } from 'antd-mobile';
 import browserCookie from 'browser-cookies';
 
 @connect(
@@ -12,7 +12,14 @@ export default class User extends Component {
         this.logout = this.logout.bind(this);
     }
     logout () {
-        alert(1);
+        const alert = Modal.alert;
+        alert('确认退出吗', 'Are you sure???', [
+            { text: '取消', onPress: () => console.log('cancel') },
+            { text: '确认', onPress: () => {
+                browserCookie.erase('userid');
+                window.location.href = window.location.href;
+            } },
+        ]);
     }
     render () {
         const props = this.props;
@@ -35,8 +42,8 @@ export default class User extends Component {
                     </Item>
                 </List>
                 <WhiteSpace></WhiteSpace>
-                <List onClick={ () => alert(1) }>
-                    <Item>退出登录</Item>
+                <List>
+                    <Item onClick={ this.logout }>退出登录</Item>
                 </List>
             </div>
         ) : null;
