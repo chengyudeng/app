@@ -5,6 +5,22 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../redux/user.redux';
 
+function hello () {
+    console.log('hello imooc, i love react');
+}
+
+
+function WrapperHello (fn) {
+    return function () {
+        console.log('before say hello');
+        fn();
+        console.log('after say hello');
+    }
+}
+
+hello = WrapperHello(hello);
+hello();
+
 @connect(
     state => state.user,
     { login }
