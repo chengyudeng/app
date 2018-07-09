@@ -20,7 +20,6 @@ export default class Login extends Component {
         this.handleLogin = this.handleLogin.bind(this);
     }
     register () {
-        console.log(this.props);
         this.props.history.push('/register');
     }
     handleChange (key, val) {
@@ -34,7 +33,7 @@ export default class Login extends Component {
     render () {
         return (
             <div>
-                { this.props.redirectTo ? <Redirect to={ this.props.redirectTo } /> : null } 
+                { this.props.redirectTo && this.props.redirectTo !== '/login' ? <Redirect to={ this.props.redirectTo } /> : null } 
                 <Logo />
                 <WingBlank>
                     <List>
