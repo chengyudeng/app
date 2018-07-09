@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Result, List, WhiteSpace } from 'antd-mobile';
-// import browserCookie from 'browser-cookies';
+import browserCookie from 'browser-cookies';
 
 @connect(
     state => state.user
