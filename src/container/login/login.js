@@ -5,21 +5,45 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../redux/user.redux';
 
-function hello () {
-    console.log('hello imooc, i love react');
+// function hello () {
+//     console.log('hello imooc, i love react');
+// }
+
+
+// function WrapperHello (fn) {
+//     return function () {
+//         console.log('before say hello');
+//         fn();
+//         console.log('after say hello');
+//     }
+// }
+
+// hello = WrapperHello(hello);
+// hello();
+
+// 属性代理
+function WrapperHello (Comp) {
+    class WrapComp extends Component {
+        render () {
+            return (
+                <div>
+                    <p>这是HOC高阶组件特有的元素</p>
+                    <Comp { ...this.props }></Comp>
+                </div>
+            )
+        }
+    }
+    return WrapComp;
 }
 
-
-function WrapperHello (fn) {
-    return function () {
-        console.log('before say hello');
-        fn();
-        console.log('after say hello');
+@WrapperHello
+class Hello extends Component {
+    render () {
+        return <h2>hello chengyudeng I love React & Redux</h2>
     }
 }
 
-hello = WrapperHello(hello);
-hello();
+// Hello = WrapperHello(Hello)
 
 @connect(
     state => state.user,
@@ -49,6 +73,7 @@ export default class Login extends Component {
     render () {
         return (
             <div>
+                <Hello></Hello>
                 { this.props.redirectTo && this.props.redirectTo !== '/login' ? <Redirect to={ this.props.redirectTo } /> : null } 
                 <Logo />
                 <WingBlank>
