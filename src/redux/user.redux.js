@@ -76,7 +76,7 @@ export function login ({ user, pwd }) {
     }
 }
 
-export function register ({user, pwd, repeatpwd, type}) {
+export function register ({ user, pwd, repeatpwd, type }) {
     if (!user || !pwd || !type) {
         return errorMsg('用户名必须输入');
     }
