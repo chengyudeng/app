@@ -1,23 +1,30 @@
 import React, { Component } from 'react';
 import { List, InputItem } from 'antd-mobile';
 import io from 'socket.io-client';
+import { connect } from 'react-redux';
+import { getMsgList } from '../../redux/chat.redux';
 
 const socket = io('ws://localhost:9093');
 
+@connect(
+    state => state,
+    { getMsgList }
+)
 export default class Chat extends Component {
     constructor (props) {
         super(props);
         this.state = { text: '', msg: [] };
     }
     componentDidMount () {
-        socket.on('revcmsg', (data) => {
-            this.setState({
-                msg: [ ...this.state.msg, data.text ]
-            });
-        });
+        this.props.getMsgList();
+        // socket.on('revcmsg', (data) => {
+        //     this.setState({
+        //         msg: [ ...this.state.msg, data.text ]
+        //     });
+        // });
     }
     handleSubmit () {
-        socket.emit('sendMsg', { text: this.state.text });
+        // socket.emit('sendMsg', { text: this.state.text });
         this.setState({ text: '' });
     }
     render () {
