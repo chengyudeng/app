@@ -13,10 +13,11 @@ const io = require('socket.io')(server);
 io.on('connection', function (socket) {
     // console.log('user login');
     socket.on('sendMsg', function (data) {
+        console.log(data);
         const { from, to, msg } = data;
         const chatid = [from, to].sort().join('_');
         Chat.create({ chatid, from, to, content: msg }, function (err, doc) {
-            io.emit('recvmsmsg', Object.assign({}, doc._doc));
+            io.emit('recvmsg', Object.assign({}, doc._doc));
         });
         // console.log(data);
         // io.emit('revcmsg', data);
