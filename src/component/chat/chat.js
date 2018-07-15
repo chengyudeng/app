@@ -16,8 +16,6 @@ export default class Chat extends Component {
         this.state = { text: '', msg: [] };
     }
     componentDidMount () {
-        this.props.getMsgList();
-        this.props.recvMsg();
         // socket.on('revcmsg', (data) => {
         //     this.setState({
         //         msg: [ ...this.state.msg, data.text ]
